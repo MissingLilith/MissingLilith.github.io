@@ -503,7 +503,9 @@ def blog<span class="token punctuation">(</span>message<span class="token punctu
     reply.add_article<span class="token punctuation">(</span>article<span class="token punctuation">)</span>
     <span class="token keyword">return</span> reply
 </code></pre>
+<blockquote>
 <p>当微信号收到用户输入‘博客’等关键词就会回复我的博客链接啦</p>
+</blockquote>
 <h3 id="图片接收"><a href="#图片接收" class="headerlink" title="图片接收"></a>图片接收</h3><pre class=" language-bash"><code class="language-bash">@robot.image
 def blog<span class="token punctuation">(</span>message, session<span class="token punctuation">)</span>:
     <span class="token comment" spellcheck="true"># print("msg", message.img)</span>
@@ -516,7 +518,9 @@ def blog<span class="token punctuation">(</span>message, session<span class="tok
     reply <span class="token operator">=</span> ImageReply<span class="token punctuation">(</span>message<span class="token operator">=</span>message, media_id<span class="token operator">=</span>message.MediaId<span class="token punctuation">)</span>
     <span class="token keyword">return</span> reply
 </code></pre>
+<blockquote>
 <p>这段代码没怎么动，把用户发送的图片原封不动地发回去</p>
+</blockquote>
 <h3 id="音乐发送"><a href="#音乐发送" class="headerlink" title="音乐发送"></a>音乐发送</h3><pre class=" language-bash"><code class="language-bash">def music_data<span class="token punctuation">(</span><span class="token punctuation">)</span>:
     music_list <span class="token operator">=</span> <span class="token punctuation">[</span>
         <span class="token punctuation">[</span><span class="token string">'童话镇'</span>, <span class="token string">'陈一发儿'</span>, <span class="token string">'https://e.coka.la/wlae62.mp3'</span>, <span class="token string">'https://e.coka.la/wlae62.mp3'</span><span class="token punctuation">]</span>,
@@ -533,9 +537,8 @@ def music<span class="token punctuation">(</span>message<span class="token punct
     <span class="token keyword">return</span> music_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token comment" spellcheck="true"># return reply</span>
 </code></pre>
-<p>当公众号收到关键词或包含关键词的文字就会从上面随机一首歌发送</p>
 <blockquote>
-<p>(实在太懒不想多加几首歌</p>
+<p>当公众号收到关键词或包含关键词的文字就会从上面随机一首歌发送<br>(实在太懒不想多加几首歌</p>
 </blockquote>
 <h3 id="随机段子"><a href="#随机段子" class="headerlink" title="随机段子"></a>随机段子</h3><pre class=" language-bash"><code class="language-bash">@robot.filter<span class="token punctuation">(</span>re.compile<span class="token punctuation">(</span><span class="token string">".*?笑话.*?"</span><span class="token punctuation">)</span>, re.compile<span class="token punctuation">(</span><span class="token string">".*?段子.*?"</span><span class="token punctuation">)</span>, <span class="token string">'joke'</span><span class="token punctuation">)</span>
 def get_joke<span class="token punctuation">(</span><span class="token punctuation">)</span>:
@@ -552,7 +555,9 @@ def get_joke<span class="token punctuation">(</span><span class="token punctuati
     joke <span class="token operator">=</span> jokes<span class="token punctuation">[</span>random.randint<span class="token punctuation">(</span>1, len<span class="token punctuation">(</span>jokes<span class="token punctuation">))</span><span class="token punctuation">]</span>.strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token keyword">return</span> <span class="token string">"讲个段子：\n"</span> + joke
 </code></pre>
+<blockquote>
 <p>段子哪里来？从网站爬的，随便来一段呗</p>
+</blockquote>
 <h3 id="天气查询"><a href="#天气查询" class="headerlink" title="天气查询"></a>天气查询</h3><pre class=" language-bash"><code class="language-bash">@robot.filter<span class="token punctuation">(</span>re.compile<span class="token punctuation">(</span><span class="token string">".*?天气.*?"</span><span class="token punctuation">)</span>, <span class="token string">'weather'</span><span class="token punctuation">)</span>
 def weather<span class="token punctuation">(</span><span class="token punctuation">)</span>:
     url <span class="token operator">=</span> <span class="token string">'http://wthrcdn.etouch.cn/weather_mini?city=武汉'</span>
@@ -563,9 +568,8 @@ def weather<span class="token punctuation">(</span><span class="token punctuatio
     <span class="token keyword">for</span> i <span class="token keyword">in</span> jsons<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'forecast'</span><span class="token punctuation">]</span>:
         <span class="token keyword">return</span> <span class="token string">"武汉天气：\n"</span> + i<span class="token punctuation">[</span><span class="token string">'date'</span><span class="token punctuation">]</span> + <span class="token string">"\n"</span> + i<span class="token punctuation">[</span><span class="token string">'type'</span><span class="token punctuation">]</span> + <span class="token string">"\t"</span> + i<span class="token punctuation">[</span><span class="token string">'fengxiang'</span><span class="token punctuation">]</span> + <span class="token string">"\n"</span> + i<span class="token punctuation">[</span><span class="token string">'high'</span><span class="token punctuation">]</span> + i<span class="token punctuation">[</span><span class="token string">'low'</span><span class="token punctuation">]</span>
 </code></pre>
-<p>天气数据哪里来，还不网上找</p>
 <blockquote>
-<p>我就只查武汉的天气，略略略（要实现指定城市查询以后再说吧</p>
+<p>天气数据哪里来，还不网上找<br>我就只查武汉的天气，略略略（要实现指定城市查询以后再说吧</p>
 </blockquote>
 <h3 id="随机图片"><a href="#随机图片" class="headerlink" title="随机图片"></a>随机图片</h3><pre class=" language-bash"><code class="language-bash">def picture<span class="token punctuation">(</span>message<span class="token punctuation">)</span>:
     num <span class="token operator">=</span> random.randint<span class="token punctuation">(</span>1, 40<span class="token punctuation">)</span>
@@ -579,7 +583,9 @@ def weather<span class="token punctuation">(</span><span class="token punctuatio
     reply.add_article<span class="token punctuation">(</span>article<span class="token punctuation">)</span>
     <span class="token keyword">return</span> reply
 </code></pre>
+<blockquote>
 <p>图片从我的图床随机选的，暂时就这么多，问就是懒得传</p>
+</blockquote>
 <h3 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h3><p>其他乱七八糟的聊天啥的，其实就是关键词自动回复，学习非要实现一个啥 正话反说 的功能，不就把字反过来嘛，非关键字机器人会反过来发回去，结果会导致发送一些东西回复变了样</p>
 <pre class=" language-bash"><code class="language-bash">@robot.filter<span class="token punctuation">(</span>re.compile<span class="token punctuation">(</span><span class="token string">".*?你好.*?"</span><span class="token punctuation">)</span>, <span class="token string">'Hi'</span>, <span class="token string">'hi'</span>, <span class="token string">'Hello'</span>, <span class="token string">'hello'</span>, <span class="token string">'嗨'</span><span class="token punctuation">)</span>
 def hello<span class="token punctuation">(</span><span class="token punctuation">)</span>:
@@ -631,11 +637,10 @@ from werobot.replies <span class="token function">import</span> ArticlesReply, A
 
 robot <span class="token operator">=</span> werobot.WeRoBot<span class="token punctuation">(</span>token<span class="token operator">=</span><span class="token string">'******'</span><span class="token punctuation">)</span>
 </code></pre>
-<p>微信公众号就只能用80端口。。。</p>
+<p>微信公众号就只能用80端口。。。<br>吐槽微信封了好多url，害我试了半天还以为是代码写错了。。。</p>
 <blockquote>
-<p>吐槽微信封了好多url，害我试了半天还以为是代码写错了。。。</p>
-</blockquote>
 <p>本人Python写的少，有不足还请理解，以后慢慢学嘛~~~<br>最后再附上<a href="https://github.com/MissingLilith/Wechat-Robot">项目地址</a>，源码都在里面</p>
+</blockquote>
 
                 
             </div>
